@@ -6,7 +6,6 @@ pygame.init()
 WIDTH, HEIGHT = 1000, 650
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pong, By: Arjun Sahlot")
-pygame.display.set_icon(pygame.image.load(os.path.join("assets", "icon.png")))
 
 SCORE_FONT = pygame.font.SysFont("comicsans", 70)
 ERROR_FONT = pygame.font.SysFont("comicsans", 130)

@@ -1,8 +1,8 @@
 import os
 import pygame
 import time
-import solver
-from assets import sudokugenerator as generate
+from project_files.Sudoku import solver
+from project_files.Sudoku.assets import sudokugenerator as generate
 
 
 def flatten(blahblahblah):
@@ -48,7 +48,6 @@ def printBoard():
             cell[1] = True
         if picture != True:
             window.blit(picture, (cell[0][0] + 3.5, cell[0][1] + 3.5))
-            os.system("cls")
 
         window.blit(SOLVE_BUT, (850, 1000))
 
@@ -100,19 +99,19 @@ def init():
     pygame.init()
     window = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku, By: Arjun Sahlot")
-    pygame.display.set_icon(pygame.image.load(os.path.join("assets", "sudoku_icon.png")))
-    ONE = pygame.image.load(os.path.join("assets", "1.png"))
-    TWO = pygame.image.load(os.path.join("assets", "2.png"))
-    THREE = pygame.image.load(os.path.join("assets", "3.png"))
-    FOUR = pygame.image.load(os.path.join("assets", "4.png"))
-    FIVE = pygame.image.load(os.path.join("assets", "5.png"))
-    SIX = pygame.image.load(os.path.join("assets", "6.png"))
-    SEVEN = pygame.image.load(os.path.join("assets", "7.png"))
-    EIGTH = pygame.image.load(os.path.join("assets", "8.png"))
-    NINE = pygame.image.load(os.path.join("assets", "9.png"))
-    BOARD = pygame.transform.scale(pygame.image.load(os.path.join("assets", "sudoku_board.png")),
+    pygame.display.set_icon(pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "sudoku_icon.png")))
+    ONE = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "1.png"))
+    TWO = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "2.png"))
+    THREE = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "3.png"))
+    FOUR = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "4.png"))
+    FIVE = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "5.png"))
+    SIX = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "6.png"))
+    SEVEN = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "7.png"))
+    EIGTH = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "8.png"))
+    NINE = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "9.png"))
+    BOARD = pygame.transform.scale(pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "sudoku_board.png")),
                                    (WIDTH, HEIGHT - BOTTOM_LEN))
-    SOLVE_BUT = pygame.image.load(os.path.join("assets", "solve_button.png"))  # 136 by 45
+    SOLVE_BUT = pygame.image.load(os.path.join("project_files", "Sudoku", "assets", "solve_button.png"))  # 136 by 45
     unflatBoard = generate.best(generate.run())
     board = list(flatten(unflatBoard))  # board that gets generated
 

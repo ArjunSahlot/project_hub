@@ -6,30 +6,30 @@ pygame.init()
 
 '''Images'''
 WPAWN = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "wpawn.png")), (70, 90))
+    os.path.join("project_files", "Chess", "assets", "wpawn.png")), (70, 90))
 WKNIGHT = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "wknight.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "wknight.png")), (90, 90))
 WBISHOP = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "wbishop.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "wbishop.png")), (90, 90))
 WROOK = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "wrook.png")), (80, 80))
+    os.path.join("project_files", "Chess", "assets", "wrook.png")), (80, 80))
 WQUEEN = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "wqueen.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "wqueen.png")), (90, 90))
 WKING = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "wking.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "wking.png")), (90, 90))
 BPAWN = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "bpawn.png")), (70, 90))
+    os.path.join("project_files", "Chess", "assets", "bpawn.png")), (70, 90))
 BKNIGHT = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "bknight.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "bknight.png")), (90, 90))
 BBISHOP = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "bbishop.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "bbishop.png")), (90, 90))
 BROOK = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "brook.png")), (80, 80))
+    os.path.join("project_files", "Chess", "assets", "brook.png")), (80, 80))
 BQUEEN = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "bqueen.png")), (90, 90))
+    os.path.join("project_files", "Chess", "assets", "bqueen.png")), (90, 90))
 BKING = pygame.transform.scale(pygame.image.load(
-    os.path.join("assets", "bking.png")), (90, 90))
-ICON = pygame.image.load(os.path.join("assets", "icon.png"))
+    os.path.join("project_files", "Chess", "assets", "bking.png")), (90, 90))
+ICON = pygame.image.load(os.path.join("project_files", "Chess", "assets", "icon.png"))
 
 '''Constants'''
 WIDTH = 800
@@ -451,7 +451,6 @@ def main(window):
     flipped = False
     turn = "WHITE"
     while run:
-        # CLOCK.tick(FPS)
         draw_window(window, board, cells)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
