@@ -23,7 +23,6 @@ VIS_IMGS = [pygame.image.load(os.path.join("assets", "search.png")),
 pygame.display.set_caption("Project Hub -- Login")
 pygame.display.set_icon(pygame.image.load(os.path.join("assets", "login_icon.png")))
 
-
 if login.main(WINDOW, WIDTH, HEIGHT, FPS) == "pass":
     pygame.display.set_caption("Project Hub -- Home")
     HOME_ICON = pygame.image.load(os.path.join("assets", "home_icon.png"))
