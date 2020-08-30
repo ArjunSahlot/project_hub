@@ -1,20 +1,22 @@
 import pygame
 import random
+import math
 
 
 class Ball:
     def __init__(self, x, y):
         self.x, self.y = x, y
-        self.dirx, self.diry = random.choice((-3, -2, -1, 1, 2, 3)), random.choice((-3, -2, -1, 1, 2, 3))
+        self.direction = random.randint(0, 360)
         self.color = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
         self.radius = random.randint(3, 8)
+        self.velocity = random.randint(2, 5)
 
     def draw(self, win):
-        pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
+        pygame.draw.circle(win, self.color, (round(self.x), round(self.y)), self.radius)
 
     def move(self, width, height, balls):
-        self.x += self.dirx
-        self.y += self.diry
+        self.x += self.velocity * math.sin(math.radians(self.direction))
+        self.y -= self.velocity * math.cos(math.radians(self.direction))
 
         destroy_balls(width, height, balls)
 

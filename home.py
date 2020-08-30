@@ -17,7 +17,7 @@ def draw_window(win, width, height, balls):
 
     vis_text = font.render("Visualizers", 1, (0, 0, 0))
     games_text = font.render("Games", 1, (0, 0, 0))
-    info_text = big_font.render("Arjun's Project Hub", 1, (0, 0, 0))
+    info_text = big_font.render("Project Hub", 1, (0, 0, 0))
 
     win.blit(vis_text, (50 + 225//2 - vis_text.get_width()//2, 475 + 100//2 - vis_text.get_height()//2))
     win.blit(games_text, (width - 50 - 225 + 225 // 2 - games_text.get_width() // 2, 475 + 100 // 2 - games_text.get_height() // 2))
