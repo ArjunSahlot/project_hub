@@ -271,7 +271,7 @@ def draw_window(window, grid, rows, width):
     window.fill(WHITE)
     for row in grid:
         for node in row:
-            node.draw(window)
+            node.draw_window(window)
     draw_grid(window, rows, width)
     pygame.display.update()
 
@@ -297,6 +297,7 @@ def main(window, rows, width):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                exit()
 
             if pygame.mouse.get_pressed()[0]:
                 pos = pygame.mouse.get_pos()

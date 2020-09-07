@@ -426,7 +426,7 @@ def rowcol_to_xy(rowcol):
 def draw_cells(window, cells):
     for row in cells:
         for cell in row:
-            cell.draw(window)
+            cell.draw_window(window)
 
 
 def reset_moves_surf():
@@ -438,7 +438,7 @@ def draw_window(window, board, cells):
 
     for row in board:
         for piece in row:
-            piece.draw(window)
+            piece.draw_window(window)
 
     window.blit(MOVES_SURF, (0, 0))
 
@@ -455,6 +455,7 @@ def main(window):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                exit()
 
             mouseRow, mouseCol = xy_to_rowcol(pygame.mouse.get_pos())
 

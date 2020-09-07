@@ -1,6 +1,5 @@
 import pygame
 import os
-import re
 import random
 import numpy as np
 import math
@@ -48,7 +47,7 @@ def display(win = False, lose = False):
 
 
 '''Get words from a a_file'''
-a_file = open("dict_for_hangman.txt", "r")
+a_file = open(os.path.join("project_files", "Hangman", "dict_for_hangman.txt"), "r")
 
 quizwords = []
 for line in a_file:
@@ -120,6 +119,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+            exit()
 
     mouseX, mouseY = pygame.mouse.get_pos()
     for i in letters:

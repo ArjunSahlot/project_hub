@@ -185,6 +185,7 @@ def main(win, width, height):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN and mouseY < height - BOTTOMBARHEIGHT and event.button == 2:
                 lineX, lineY = mouseX, mouseY

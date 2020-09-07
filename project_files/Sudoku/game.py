@@ -214,6 +214,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+            exit()
 
     mouseX, mouseY = pygame.mouse.get_pos()
     '''Highlights the box you are hovering on/clicked'''

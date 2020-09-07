@@ -267,6 +267,7 @@ def main(window):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                exit()
             if vis_button.collidepoint(pygame.mouse.get_pos()):
                 vis_col = RED
                 if event.type == pygame.MOUSEBUTTONDOWN:
