@@ -18,7 +18,9 @@ WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 GAME_IMGS = [pygame.image.load(os.path.join("assets", "chess.png")),
              pygame.image.load(os.path.join("assets", "pong.png")),
              pygame.image.load(os.path.join("assets", "hangman.png")),
-             pygame.image.load(os.path.join("assets", "sudoku.png"))]
+             pygame.image.load(os.path.join("assets", "sudoku.png")),
+             pygame.image.load(os.path.join("assets", "dodger.png")),
+             pygame.image.load(os.path.join("assets", "corona_fall.png"))]
 
 
 def bigger(image):
@@ -43,7 +45,7 @@ def main(win, width, height, fps, home_icon, images):
     games_run = True
     balls = ballbg.create_balls(width, height)
     clock = pygame.time.Clock()
-    buttons = [0, 0, 0, 0]
+    buttons = [0] * len(images)
     while games_run:
         clock.tick(fps)
         back_button, buttons = draw_window(win, width, height, balls, home_icon, images, buttons)
@@ -72,6 +74,10 @@ def main(win, width, height, fps, home_icon, images):
                             from project_files.Hangman import game
                         elif i == 3:
                             from project_files.Sudoku import game
+                        elif i == 4:
+                            from project_files.Dodger_Plane import game
+                        elif i == 5:
+                            from project_files.Corona_Fall import game
 
         pygame.display.update()
 

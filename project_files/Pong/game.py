@@ -91,7 +91,7 @@ def draw_window(win, width, height, player_width, player_height, player1_x, play
     win.blit(SCORE_FONT.render(str(player1_score), 1, WHITE), (180, 20))
     win.blit(SCORE_FONT.render(str(player2_score), 1, WHITE),
              (WIDTH - 180 - SCORE_FONT.render(str(player2_score), 1, WHITE).get_width(), 20))
-    ball.draw_window(win)
+    ball.draw(win)
 
 
 def main(win, width, height, player_width, player_height, player1_x, player2_x):

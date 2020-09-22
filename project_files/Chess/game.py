@@ -426,7 +426,7 @@ def rowcol_to_xy(rowcol):
 def draw_cells(window, cells):
     for row in cells:
         for cell in row:
-            cell.draw_window(window)
+            cell.draw(window)
 
 
 def reset_moves_surf():
@@ -438,7 +438,7 @@ def draw_window(window, board, cells):
 
     for row in board:
         for piece in row:
-            piece.draw_window(window)
+            piece.draw(window)
 
     window.blit(MOVES_SURF, (0, 0))
 
