@@ -191,6 +191,128 @@ def create_account(win, width, height, users, fps):
         pygame.display.update()
 
 
+def draw_change(win, width, height, balls, username_typing, password_typing1, password_typing2, display):
+    win.fill((255, 255, 255))
+    for ball in balls:
+        ball.draw(win)
+
+    text = BIG_FONT.render("Change Password", 1, (0, 0, 0))
+    win.blit(text, (width // 2 - text.get_width() // 2, 100))
+
+    pygame.draw.rect(win, (255, 255, 255), (width // 2 - 250, 300, 500, 60))
+    username_box = pygame.draw.rect(win, (0, 0, 0) if not username_typing else (0, 20, 255),
+                                    (width // 2 - 250, 300, 500, 60), 3)
+
+    pygame.draw.rect(win, (255, 255, 255), (width // 2 - 250, 400, 500, 60))
+    password_box1 = pygame.draw.rect(win, (0, 0, 0) if not password_typing1 else (0, 20, 255),
+                                     (width // 2 - 250, 400, 500, 60), 3)
+
+    pygame.draw.rect(win, (255, 255, 255), (width // 2 - 250, 500, 500, 60))
+    password_box2 = pygame.draw.rect(win, (0, 0, 0) if not password_typing2 else (0, 20, 255),
+                                     (width // 2 - 250, 500, 500, 60), 3)
+
+    change_box = pygame.draw.rect(win, (0, 255, 0), (width // 2 + 250 - 134, 560 + 15, 134, 40))
+    text = MID_FONT.render("Change!", 1, (0, 0, 0))
+    win.blit(text, (width // 2 + 250 - 134 + 67 - text.get_width() // 2, 560 + 15 + 20 - text.get_height() // 2))
+
+    if display is not None:
+        text = BIG_FONT.render(display, 1, (255, 0, 0))
+        win.blit(text, (width//2 - text.get_width()//2, 175))
+
+    return username_box, password_box1, password_box2, change_box
+
+
+def change_password(win, width, height, users, fps):
+    clock = pygame.time.Clock()
+    bouncing_balls = False
+    balls = ballbg.create_balls(width, height, bouncing_balls)
+    change_run = True
+    username_text = TextInput("Username", max_string_length=36)
+    password_text1 = TextInput("New Password", max_string_length=36)
+    password_text2 = TextInput("Confirm New Password", max_string_length=36)
+    username_typing = False
+    password_typing1 = False
+    password_typing2 = False
+    display = None
+    while change_run:
+        clock.tick(fps)
+        mouse_pos = pygame.mouse.get_pos()
+        for ball in balls:
+            ball.move(balls)
+        events = pygame.event.get()
+        balls = ballbg.add_balls(events, width, height, balls, bouncing_balls)
+        username_box, password_box1, password_box2, change_box = draw_change(win, width, height, balls, username_typing,
+                                                                             password_typing1, password_typing2, display)
+        for event in events:
+            if event.type == pygame.QUIT:
+                exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if username_box.collidepoint(mouse_pos):
+                    username_typing = True
+                    password_typing1 = False
+                    password_typing2 = False
+                    if username_text.get_text() == "Username":
+                        username_text.clear_text()
+                elif password_box1.collidepoint(mouse_pos):
+                    password_typing1 = True
+                    password_typing2 = False
+                    username_typing = False
+                    if password_text1.get_text() == "New Password":
+                        password_text1.clear_text()
+                    password_text1.password = True
+                elif password_box2.collidepoint(mouse_pos):
+                    password_typing2 = True
+                    password_typing1 = False
+                    username_typing = False
+                    if password_text2.get_text() == "Confirm New Password":
+                        password_text2.clear_text()
+                    password_text2.password = True
+                else:
+                    username_typing = False
+                    password_typing1 = False
+                    password_typing2 = False
+
+                if change_box.collidepoint(mouse_pos):
+                    if not users.is_user(username_text.get_text()):
+                        display = "There is no account with this username"
+                    else:
+                        if password_text1.get_text() != password_text2.get_text():
+                            display = "The passwords do not match"
+                        else:
+                            try:
+                                users.change_password(username_text.get_text(), password_text1.get_text())
+                                users.store()
+                                display = "Successful, you are being redirected..."
+                                draw_change(win, width, height, balls, username_typing, password_typing1, password_typing2, display)
+                                pygame.display.update()
+                                pygame.time.delay(2000)
+                                change_run = False
+                            except:
+                                display = "There was an error, Try again."
+
+        if password_text1.get_text() == "" and not password_typing1:
+            password_text1.input_string = "New Password"
+            password_text1.password = False
+        if password_text2.get_text() == "" and not password_typing2:
+            password_text2.input_string = "Confirm New Password"
+            password_text2.password = False
+        if username_text.get_text() == "" and not username_typing:
+            username_text.input_string = "Username"
+
+        username_text.update(events, username_typing)
+        win.blit(username_text.get_surface(),
+                 (width // 2 - 250 + 20, 300 + 30 - username_text.get_surface().get_height() // 2))
+        password_text1.update(events, password_typing1)
+        win.blit(password_text1.get_surface(),
+                 (width // 2 - 250 + 20, 400 + 30 - password_text1.get_surface().get_height() // 2))
+        password_text2.update(events, password_typing2)
+        win.blit(password_text2.get_surface(),
+                 (width // 2 - 250 + 20, 500 + 30 - password_text2.get_surface().get_height() // 2))
+
+        pygame.display.update()
+
+
 def main(win, width, height, fps):
     if os.path.isfile(os.path.join(PARENT, "users.obj")):
         users = pickle.load(open("users.obj", "rb"))
@@ -237,7 +359,8 @@ def main(win, width, height, fps):
                     username_typing = False
                     password_typing = False
                 if change_box.collidepoint(mouse_pos):
-                    pass
+                    change_password(win, width, height, users, fps)
+                    users = pickle.load(open("users.obj", "rb"))
                 elif create_box.collidepoint(mouse_pos):
                     create_account(win, width, height, users, fps)
                     users = pickle.load(open("users.obj", "rb"))

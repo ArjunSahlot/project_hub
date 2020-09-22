@@ -271,7 +271,7 @@ def draw_window(window, grid, rows, width):
     window.fill(WHITE)
     for row in grid:
         for node in row:
-            node.draw_window(window)
+            node.draw(window)
     draw_grid(window, rows, width)
     pygame.display.update()
 

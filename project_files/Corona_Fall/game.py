@@ -12,7 +12,7 @@ FPS = 60
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (screen_width//2-WIDTH//2, screen_height//2-HEIGHT//2)
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Corona Fall, By: Arjun Sahlot")
-pygame.display.set_icon(pygame.image.load(os.path.join("assets", "icon.png")))
+pygame.display.set_icon(pygame.image.load(os.path.join("project_files", "Corona_Fall", "assets", "icon.png")))
 
 FONT = pygame.font.SysFont("comicsans", 50)
 
@@ -23,7 +23,7 @@ WHITE = (255, 255, 255)
 class Player:
     def __init__(self, x, width, height, vel):
         self.x, self.y, self.width, self.height, self.vel = x, HEIGHT - height, width, height, vel
-        self.image = pygame.transform.scale(pygame.image.load(os.path.join("assets", "player.png")), (width, height))
+        self.image = pygame.transform.scale(pygame.image.load(os.path.join("project_files", "Corona_Fall", "assets", "player.png")), (width, height))
         self._change_colors()
 
     def move(self):
@@ -53,7 +53,7 @@ class Corona:
 
     def __init__(self):
         self.x, self.y = random.randint(0, WIDTH - self.WIDTH) , -random.randint(0, 10)*80
-        self.image = pygame.transform.scale(pygame.image.load(os.path.join("assets", "corona.png")), (self.WIDTH, self.HEIGHT))
+        self.image = pygame.transform.scale(pygame.image.load(os.path.join("project_files", "Corona_Fall", "assets", "corona.png")), (self.WIDTH, self.HEIGHT))
 
     def move(self, player):
         self.y += self.VEL
@@ -121,7 +121,7 @@ def main(win):
     coronas = create_coronas(n)
     score = 0
     try:
-        with open("max_score.txt", "r") as f:
+        with open(os.path.join("project_files", "Corona_Fall", "max_score.txt"), "r") as f:
             line = f.readline()
             max_score = int(line)
     except FileNotFoundError:
@@ -136,9 +136,10 @@ def main(win):
             max_score = score
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                with open("max_score.txt", "w") as f:
+                with open(os.path.join("project_files", "Corona_Fall", "max_score.txt"), "w") as f:
                     f.write(str(max_score))
                 run = False
+                exit()
         pygame.display.update()
 
 

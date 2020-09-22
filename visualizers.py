@@ -58,13 +58,12 @@ def main(win, width, height, fps, home_icon, images):
                 run = False
                 exit()
 
-            if back_button.collidepoint(mouse_pos):
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    from Project_Hub import home
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_button.collidepoint(mouse_pos):
+                    import home
 
-            for i in range(len(buttons)):
-                if buttons[i].collidepoint(mouse_pos):
-                    if event.type == pygame.MOUSEBUTTONDOWN:
+                for i in range(len(buttons)):
+                    if buttons[i].collidepoint(mouse_pos):
                         if i == 0:
                             from project_files.Algorithm_Visualizer import AlgorithmVisualizer
                         elif i == 1:

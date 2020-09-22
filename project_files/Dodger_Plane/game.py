@@ -179,6 +179,7 @@ def main(win):
                 with open("project_files/Dodger_Plane/max_score.txt", "w") as f:
                     f.write(str(max_score))
                 run = False
+                exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     playing = True if playing == False else False

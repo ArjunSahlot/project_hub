@@ -55,11 +55,11 @@ def main(win, width, height, fps):
 
             if vis_button.collidepoint(mouse_pos):
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    from Project_Hub import visualizers
+                    import visualizers
 
             if games_button.collidepoint(mouse_pos):
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    from Project_Hub import games
+                    import games
 
         pygame.display.update()
 
