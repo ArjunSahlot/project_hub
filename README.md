@@ -1,2 +1,2 @@
 # Project_Hub
-A group of all my pygame projects.
+A group of some of my pygame projects.
