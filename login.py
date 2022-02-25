@@ -386,7 +386,7 @@ def main(win, width, height, fps):
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 if validate_user(users, username_text.get_text(), password_text.get_text()):
-                    from Project_Hub import home
+                    import home
                 else:
                     status = "invalid"
 
